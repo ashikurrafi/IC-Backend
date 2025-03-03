@@ -3,6 +3,7 @@ const apiError = require("../error/apiError");
 const apiResponse = require("../error/apiResponse");
 const asyncHandler = require("../error/asyncHandler");
 
+// Create a new product
 const addNewProduct = asyncHandler(async (req, res) => {
   const { name, price, category, stock, description } = req.body;
   const product = new Product({ name, price, category, stock, description });
@@ -11,6 +12,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
   res.status(201).json(response);
 });
 
+// Get all products
 const getAllPProduct = asyncHandler(async (req, res) => {
   const products = await Product.find();
   if (products.length === 0) {
@@ -24,6 +26,7 @@ const getAllPProduct = asyncHandler(async (req, res) => {
   res.status(200).json(response);
 });
 
+// Get product by id
 const getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (!product) {
@@ -33,6 +36,7 @@ const getProductById = asyncHandler(async (req, res) => {
   res.status(200).json(response);
 });
 
+// Update product by id
 const updateProduct = asyncHandler(async (req, res) => {
   const { name, price, category, stock, description } = req.body;
   const product = await Product.findByIdAndUpdate(
@@ -51,6 +55,7 @@ const updateProduct = asyncHandler(async (req, res) => {
   res.status(200).json(response);
 });
 
+// Delete product by id
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findByIdAndDelete(req.params.id);
 

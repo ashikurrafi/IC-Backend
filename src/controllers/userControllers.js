@@ -4,6 +4,7 @@ const apiError = require("../error/apiError");
 const apiResponse = require("../error/apiResponse");
 const jwt = require("jsonwebtoken");
 
+// Register a new user
 const userRegister = asyncHandler(async (req, res) => {
   const { username, email, password, role } = req.body;
   const userExists = await User.findOne({ email });
@@ -24,6 +25,7 @@ const userRegister = asyncHandler(async (req, res) => {
   res.status(201).json(response);
 });
 
+// Login a user
 const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   if (!username || !email || !password) {

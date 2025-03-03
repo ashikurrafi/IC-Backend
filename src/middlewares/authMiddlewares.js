@@ -1,6 +1,7 @@
 // authMiddleware.js
 const jwt = require("jsonwebtoken");
 
+// Authenticate user
 const authenticate = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token)
@@ -15,6 +16,7 @@ const authenticate = (req, res, next) => {
   });
 };
 
+// Authorize admin
 const authorizeAdmin = (req, res, next) => {
   if (req.user.role !== "admin") {
     return res
