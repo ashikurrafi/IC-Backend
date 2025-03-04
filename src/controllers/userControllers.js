@@ -28,7 +28,7 @@ const userRegister = asyncHandler(async (req, res) => {
 // Login a user
 const userLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  if (!username || !email || !password) {
+  if (!email || !password) {
     throw new apiError(400, "All fields are required");
   }
   const user = await User.findOne({ email });
